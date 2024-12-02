@@ -18,8 +18,20 @@ model User {
   name     String
   email    String    @unique
   password String
-  color    Color
+  color    String
   product  Product[]
+  team     Team
+}
+
+ enum Team {
+  MUMBAI_INDIANS
+  DELHI_CAPITALS
+  ROYAL_CHALLENGERS_BANGALORE
+  CHENNAI_SUPER_KINGS
+  RAJASTHAN_ROYALS
+  HYDERABAD
+  KOLKATA_KINGHT_RIDERS
+  LUCKNOW_SUPER_GIANTS
 }
 
 model Product {
@@ -32,13 +44,3 @@ model Product {
   user        User   @relation(fields: [userId], references: [id])
 }
 
-enum Color {
-  BLUE
-  YELLOW
-  PURPLE
-  RED
-  ORANGE
-  WHITE
-  BLACK
-  GREEN
-}
