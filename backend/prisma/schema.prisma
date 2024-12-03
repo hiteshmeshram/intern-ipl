@@ -19,8 +19,14 @@ model User {
   email    String    @unique
   password String
   color    String
-  product  Product[]
-  team     Team
+  team     Team 
+  role     Role @default(USER)
+  cart     Cart[]
+}
+
+enum Role {
+  ADMIN
+  USER
 }
 
  enum Team {
@@ -40,7 +46,14 @@ model Product {
   description String
   price       String
   image_url   String
-  userId      Int
-  user        User   @relation(fields: [userId], references: [id])
+  cart Cart[]
+}
+
+model Cart {
+  id   Int @id @default(autoincrement())
+  userId Int 
+  productId  Int
+  user   User @relation(fields: [userId],references: [id])
+  product Product @relation(fields: [productId],references: [id])
 }
 

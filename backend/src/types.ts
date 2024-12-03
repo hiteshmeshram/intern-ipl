@@ -13,3 +13,10 @@ export const signinSchema = z.object({
     email: z.string().email(),
     password: z.string().min(4).max(15),
 })
+
+export const productSchema = z.object({
+    name: z.string(),
+    description: z.string(),
+    price: z.number(),
+    image_url: z.string()
+})

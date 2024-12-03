@@ -30,17 +30,20 @@ userRouter.post('/signup',async (req,res) => {
                 email,
                 password: hashedPassword,
                 color,
-                team: assignedTeam
+                team: assignedTeam,
+                role: 'USER'
             }
         })
 
         const token = jwt.sign({
-            id: newUser.id
+            id: newUser.id,
+            role: newUser.role
         },SECRET)
 
         res.json({
             message: 'user created successfully',
-            token
+            token,
+            team: assignedTeam
         })
 
     } catch(e) {
@@ -54,6 +57,7 @@ userRouter.post('/signup',async (req,res) => {
 
 userRouter.post('/signin',async (req,res) => {
     const {email, password} = req.body;
+    console.log(email,password)
 
     const parsedData = signinSchema.safeParse(req.body);
     if(!parsedData.success) {
@@ -84,7 +88,8 @@ userRouter.post('/signin',async (req,res) => {
         }
 
         const token = jwt.sign({
-            id: user.id
+            id: user.id,
+            role: user.role
         },SECRET)
 
         res.json({
@@ -100,9 +105,30 @@ userRouter.post('/signin',async (req,res) => {
     }
 })
 
-userRouter.get('/me',userMiddleware,async (req,res) => {
+userRouter.put('/update',userMiddleware,async(req,res)=>{
     const id = req.id;
 
+    try{
+        await client.user.update({
+            where: {
+                id
+            },data: req.body
+        });
+
+        res.json({
+            message: 'user updated successfully'
+        })
+
+    } catch(e) {
+        console.log(e);
+        res.status(404).json({
+            message: 'error while updating info'
+        })
+    }
+})
+
+userRouter.get('/me',userMiddleware,async (req,res) => {
+    const id = req.id;
     const user = await client.user.findFirst({
         where: {
             id
@@ -111,7 +137,8 @@ userRouter.get('/me',userMiddleware,async (req,res) => {
             name: true,
             email: true,
             team: true,
-            color: true
+            color: true,
+            role: true
         }
     })
 

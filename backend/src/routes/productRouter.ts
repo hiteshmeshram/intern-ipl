@@ -29,15 +29,16 @@ productRouter.post('/add',adminMiddleware,async (req,res)=>{
     }
 })
 
-productRouter.put('/edit',adminMiddleware,async (req,res)=>{
-    const {id,data} = req.body;
+productRouter.put('/edit/:id',adminMiddleware,async (req,res)=>{
+    const id = req.params.id;
+    
 
     try {
         await client.product.update({
             where: {
-                id: req.body.id
+                id: Number(id)
             },
-            data: req.body.data
+            data: req.body
         })
 
         res.json({
@@ -52,13 +53,16 @@ productRouter.put('/edit',adminMiddleware,async (req,res)=>{
     }
 })
 
-productRouter.delete('/delete',adminMiddleware,async (req,res)=>{
-    const {id } = req.body;
+productRouter.delete('/delete/:id',adminMiddleware,async (req,res)=>{
+    const id = req.params.id;
     try {
         await client.product.delete({
             where: {
-                id
+                id: Number(id)
             }
+        })
+        res.json({
+            message: 'product deleted successfully'
         })
     } catch(e) {
         console.log(e);
