@@ -1,0 +1,1 @@
+{"root":["./src/assignteam.ts","./src/config.ts","./src/index.ts","./src/seed.ts","./src/types.ts","./src/middleware/adminmiddleware.ts","./src/middleware/usermiddleware.ts","./src/routes/productrouter.ts","./src/routes/userrouter.ts"],"version":"5.7.2"}

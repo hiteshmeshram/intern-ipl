@@ -46,6 +46,7 @@ model Product {
   description String
   price       String
   image_url   String
+  team        Team    @default(MUMBAI_INDIANS)
   cart Cart[]
 }
 
