@@ -16,20 +16,21 @@ export const Signin = () => {
             password
         })
         const data = response.data;
+        console.log(email,password)
         localStorage.setItem('token',data.token);
         navigate('/dashboard');
     }
 
-    return <div className="flex justify-center pt-28">
-        <div className="w-1/5 border p-4 pt-8 rounded-md shadow-md">
+    return <div className="flex justify-center pt-28 bg-slate-600 bg-gradient-to-t from-white ">
+        <div className="w-1/5 border border-black  p-4 pt-8 rounded-md shadow-lg">
             <div className="w-full mt-2">
-                <div>Email</div>
+                <div className='font-bold'>Email</div>
                 <Input type='text' placeholder="Email" onChange={(value)=>{
                 setEmail(value);
             }}/>
             </div>
             <div className="w-full mt-2">
-                <div>Password</div>
+                <div className='font-bold'>Password</div>
                 <Input type='text' placeholder="Email" onChange={(value)=>{
                 setPassword(value);
             }}/>

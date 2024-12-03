@@ -25,8 +25,8 @@ export const Signup = () => {
         navigate('/dashboard');
     }
 
-    return <div className="flex justify-center pt-28">
-            <div className="w-1/5 border p-4 pt-8 rounded-md shadow-md">
+    return <div className="flex justify-center pt-28 bg-gray-500 bg-gradient-to-t from-white">
+            <div className="w-1/5 border border-black p-4 pt-8 rounded-md shadow-lg">
 
                 <div className="w-full mt-2">
                     <div>Name</div>
