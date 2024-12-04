@@ -3,8 +3,6 @@ import axios from "axios"
 import { BACKEND_URL, teamArray } from "../utils/constants"
 import { Product, User } from "../utils/types"
 import { Card } from "./Card"
-import { useNavigate } from "react-router-dom"
-
 import {
   Dialog,
   DialogContent,

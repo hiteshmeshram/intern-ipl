@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { Vortex } from "./ui/vortex";
 import { useMe } from "@/hooks/useMe";
-import { User } from "@/utils/types";
 
 export function Landing() {
     const navigate = useNavigate();
