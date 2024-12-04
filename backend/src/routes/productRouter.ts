@@ -8,14 +8,16 @@ import { IplTeams } from '../types';
 export const productRouter = Router();
 
 productRouter.post('/add',adminMiddleware,async (req,res)=>{
-    const {name,description,price,image_url} = req.body;
+    const {name,description,price,image_url,team} = req.body;
+    console.log(req.body)
     try {
         await client.product.create({
             data: {
                 name,
                 description,
                 price,
-                image_url
+                image_url: image_url.toString(),
+                team
             }
         })
 
