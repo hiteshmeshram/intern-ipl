@@ -1,4 +1,4 @@
-import { useRecoilState } from "recoil"
+import {  useSetRecoilState } from "recoil"
 import { PrimaryButton } from "./PrimaryButton"
 import { productAtom } from "../store/productAtom";
 import { Product } from "../utils/types";
@@ -7,10 +7,9 @@ export const Card = ({product}: {
     product: Product
 })=>{
     
-    const [cart,setCart] = useRecoilState(productAtom);
+    const setCart = useSetRecoilState(productAtom);
 
     function addToCart() {
-
         setCart(p => [...p,product]);
     }
 
