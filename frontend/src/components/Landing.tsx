@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom"
-import React from "react";
 import { Vortex } from "./ui/vortex";
 import { useMe } from "@/hooks/useMe";
+import { User } from "@/utils/types";
 
 export function Landing() {
     const navigate = useNavigate();
     const user = useMe();
-
-    if(user.email) {
+ 
+    if(user!.email) {
       navigate('/dashboard')
     }
   return (

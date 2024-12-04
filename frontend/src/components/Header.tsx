@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { BACKEND_URL } from "../utils/constants";
 import { User } from "../utils/types";
-import { useRecoilState, useRecoilValue } from "recoil";
+import {  useRecoilValue } from "recoil";
 import { lengthSelector } from "../store/selectors";
 
 export const Header = () => {

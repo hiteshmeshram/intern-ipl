@@ -1,4 +1,4 @@
-import { useRecoilState, useSetRecoilState } from "recoil"
+import { useRecoilState } from "recoil"
 import { PrimaryButton } from "./PrimaryButton"
 import { productAtom } from "../store/productAtom";
 import { Product } from "../utils/types";

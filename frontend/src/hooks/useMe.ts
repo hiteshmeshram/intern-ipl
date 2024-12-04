@@ -3,8 +3,8 @@ import { User } from "@/utils/types";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export async function useMe() {
-    const [user,setUser] = useState<User | null>(null);
+export  function useMe() {
+    const [user,setUser] = useState<User>();
 
     async function fetchUserData() {
         const response = await axios.get(`${BACKEND_URL}/api/v1/user/me`,{
@@ -19,5 +19,6 @@ export async function useMe() {
         fetchUserData();
     })
 
+    if(user)
     return user;
 }

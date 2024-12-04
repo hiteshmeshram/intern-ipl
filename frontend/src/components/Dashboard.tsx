@@ -3,23 +3,20 @@ import axios from "axios"
 import { BACKEND_URL, teamArray } from "../utils/constants"
 import { Product, User } from "../utils/types"
 import { Card } from "./Card"
-import { PrimaryButton } from "./PrimaryButton"
 import { useNavigate } from "react-router-dom"
 
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Input } from "./Input"
-import { constants } from "buffer"
 
 export const Dashboard = () => {
-    const navigate = useNavigate();
+    
     const [ userData,setUserData ] = useState<null | User>(null);
     const [ products,setProducts ] = useState<Product[] | null>(null);
     const [color,setColor] = useState('')

@@ -5,7 +5,6 @@ import { PrimaryButton } from "./PrimaryButton";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BACKEND_URL } from "@/utils/constants";
-import Razorpay from "razorpay";
 
 export const Cart = () => {
     
