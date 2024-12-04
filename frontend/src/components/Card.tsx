@@ -14,7 +14,7 @@ export const Card = ({product}: {
         setCart(p => [...p,product]);
     }
 
-    return <div className="p-4  border w-64 mr-10 shadow-md">
+    return <div className="p-4  border w-64 mr-10 shadow-md my-5">
         <img className="w-full h-56" src={product.image_url}></img>
         <div className="mt-5 flex flex-col items-center">
             <h3 className=" text-xl ">{product.name}</h3>

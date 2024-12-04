@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
-import { BACKEND_URL } from "../utils/constants"
+import { BACKEND_URL, teamArray } from "../utils/constants"
 import { Product, User } from "../utils/types"
 import { Card } from "./Card"
 import { PrimaryButton } from "./PrimaryButton"
@@ -16,9 +16,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Input } from "./Input"
-
-
-
+import { constants } from "buffer"
 
 export const Dashboard = () => {
     const navigate = useNavigate();
@@ -29,6 +27,7 @@ export const Dashboard = () => {
     const [description,setDescription] = useState('')
     const [price,setPrice] = useState('');
     const [imageurl,setImageUrl] = useState('')
+    const [team,setTeam] = useState('')
 
     async function inti() {
         const response = await axios.get(`${BACKEND_URL}/api/v1/user/me`,{
@@ -58,13 +57,22 @@ export const Dashboard = () => {
     }
 
     if(userData.role === 'ADMIN') {
+
         async function addProducts() {
-            const response = await axios.post(`${BACKEND_URL}/api/v1/product/add`,{
-                
+            const response = await axios.post(`${BACKEND_URL}/api/v1/product/add`,
+              {
+                    name,
+                    description,
+                    price,
+                    image_url: imageurl,
+                    team
+                },{
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
             })
+
+            console.log(response.data)
 
             alert("product added successfully")
         }
@@ -96,9 +104,17 @@ export const Dashboard = () => {
                         <Input type='text' placeholder='Name' onChange={(value)=>{
                             setImageUrl(value)
                         }}/>
+                        <select onChange={(e)=>{
+                            setTeam(e.target.value)
+                            console.log(team)
+                        }} className="w-full py-2 border mt-2 text-gray-500 rounded-md">
+                            {teamArray.map(t=>{
+                            return <option value={t}>{t}</option>
+                        })}
+                    </select>
                     </div>
                     <DialogFooter>
-                   <button onClick={addProducts}>add </button>
+                   <button onClick={addProducts} className="bg-black text-white px-4 py-2 shadow-md rounded-lg">add </button>
                     </DialogFooter>
                 </DialogContent>
                 </Dialog>
@@ -109,11 +125,11 @@ export const Dashboard = () => {
         </div>
     }
 
-    return <div className={`bg-${color}-600  h-screen bg-gradient-to-b from-white bg-${userData.color}-50`}> 
+    return <div className={`bg-${color}-600  min-h-screen bg-gradient-to-b from-white `}> 
         <div className="text-3xl flex justify-center pt-8">
              Welcome to {userData.team} fan store
         </div>
-        <div className="flex mx-[10%] p-10">
+        <div className="flex mx-[5%] justify-center p-10 flex-wrap ">
 
             {products?.map(product => {
                 return <Card key={product.id} product={product}/>

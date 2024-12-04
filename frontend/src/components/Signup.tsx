@@ -50,7 +50,7 @@ export const Signup = () => {
                 </div>
 
                 <div className="w-full mt-2">
-                    <div>City</div>
+                    <div>Color</div>
                     <select onChange={(e)=>{
                         setColor(e.target.value)
                     }} className="w-full py-2 border mt-2 text-gray-500 rounded-md">

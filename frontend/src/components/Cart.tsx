@@ -5,8 +5,10 @@ import { PrimaryButton } from "./PrimaryButton";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BACKEND_URL } from "@/utils/constants";
+import Razorpay from "razorpay";
 
 export const Cart = () => {
+    
     const [products,setProducts] = useRecoilState(productAtom);
     const total = useRecoilValue(totalSelector);
     const [color,setColor] = useState("")
@@ -29,6 +31,10 @@ export const Cart = () => {
     function handleRemoveItem(id: number) {
         const itemsAfterRemove = products.filter((p)=>p.id !==id);
         setProducts(itemsAfterRemove);
+    }
+
+    function handlePlaceorder() {
+        
     }
 
     return <div className={`px-[5%] bg-${color}-600 bg-gradient-to-b from-white h-screen `}>
@@ -54,7 +60,8 @@ export const Cart = () => {
             
             <div className="flex justify-center mt-8 items-center">
                 <span className="font-bold ">TOTAL- RS. {total}</span>
-                <button className="bg-black text-white px-5 ml-8 py-2 rounded-md ">PLACE YOUR ORDER</button>
+                <button className="bg-black text-white px-5 ml-8 py-2 rounded-md "
+                    onClick={handlePlaceorder}>PLACE YOUR ORDER</button>
             </div>
         </div>
     </div>
